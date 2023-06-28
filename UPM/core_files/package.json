@@ -3,7 +3,7 @@
   "displayName": "WLT Core",
   "version": "1.5.10",
   "unity": "2018.4",
-  "msftFeatureCategory" : "World Locking Tools",
+  "msftFeatureCategory": "World Locking Tools",
   "description": "World Locking Tools for Unity (WLT)\n\nLock AR virtual space to physical space automatically and intuitively, without requiring application management of anchors.\nPreserve object relative layout, while remaining perceptually stationary in the physical world.",
   "keywords": [
     "mrtk",
@@ -31,18 +31,16 @@
   "bugs": {
     "url": "https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/issues"
   },
-  "dependencies": {
-  },
   "files": [
-    "WorldLocking.Core*",
-    "WorldLocking.Engine*",
-    "WorldLocking.Tools*",
+    "E:\\Repos\\MixedReality-WorldLockingTools-Unity\\Assets\\Documentation~*",
+    "..\\..\\Assets\\WorldLocking.Core*",
+    "..\\..\\Assets\\WorldLocking.Engine*",
+    "..\\..\\Assets\\WorldLocking.Tools*",
     "Packages\\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.1*",
     "Packages.meta",
     "package.json.meta",
     "LICENSE*",
     "NOTICE*",
-    "CHANGELOG*",
-    "Documentation~*"
+    "CHANGELOG*"
   ]
 }

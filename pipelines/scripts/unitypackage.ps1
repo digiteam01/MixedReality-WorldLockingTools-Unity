@@ -52,9 +52,9 @@
 #>
 param(
     [string]$OutputDirectory = ".\artifacts",
-    [string]$RepoDirectory = ".",
+    [string]$RepoDirectory ="..\..",
     [string]$LogDirectory,
-    [string]$UnityDirectory,
+    [string]$UnityDirectory = "C:\Program Files\Unity\Hub\Editor\2021.3.26f1\Editor",
     [switch]$Clean,
     [switch]$Verbose
 )
@@ -76,13 +76,16 @@ $packages = @{
         "Assets\WorldLocking.Core",
         "Assets\WorldLocking.Engine"
     );
-    "Examples_wMRTKV2.2" = @(
-        "Assets\WorldLocking.Examples",
-        "Assets\MRTK"
-    );
+    #"Examples_wMRTKV2.2" = @(
+    #    "Assets\WorldLocking.Examples",
+    #    "Assets\MRTK"
+    #);
     "Tools" = @(
         "Assets\WorldLocking.Tools"
     );
+	"Packages" = @(
+		"Assets\Packages\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.1"
+	);
 }
 
 # Beginning of the .unitypackage script main section
@@ -106,6 +109,8 @@ if (-not $unityEditor) {
 }
 Write-Verbose $unityEditor;
 
+
+
 if ($Clean) {
     Write-Verbose "Recursively deleting output directory: $OutputDirectory"
     Remove-Item -ErrorAction SilentlyContinue $OutputDirectory -Recurse 
@@ -121,9 +126,13 @@ if (-not $LogDirectory) {
     New-Item $LogDirectory -ItemType Directory | Out-Null
 }
 
+
+
 $OutputDirectory = Resolve-Path $OutputDirectory
 $LogDirectory = Resolve-Path $LogDirectory
 $RepoDirectory = Resolve-Path $RepoDirectory
+
+
 
 foreach ($entry in $packages.GetEnumerator()) {
     $packageName = $entry.Name;
@@ -132,10 +141,14 @@ foreach ($entry in $packages.GetEnumerator()) {
     $logFileName = "$LogDirectory\Build-UnityPackage-$packageName.log"
     $unityPackagePath = "$OutputDirectory\Microsoft.WorldLockingTools.Unity.${packageName}.unitypackage";
     
+	
+	
     # The exportPackages flag expects the last value in the array
     # to be the final output destination.
     $exportPackages = $folders + $unityPackagePath
     $exportPackages = $exportPackages -join " "
+
+
 
     Write-Verbose "Generating .unitypackage: $unityPackagePath"
     Write-Verbose "Log location: $logFileName"
@@ -150,16 +163,26 @@ foreach ($entry in $packages.GetEnumerator()) {
             "-exportPackage $exportPackages " +
             "-logFile $logFileName"
 
+
+
         # Starts the Unity process, and the waits (and shows output from the editor in the console
         # while the process is still running.)
         $proc = Start-Process -FilePath "$unityEditor" -ArgumentList "$unityArgs" -PassThru
+		
+		
+		
         $ljob = Start-Job -ScriptBlock { param($log) Get-Content "$log" -Wait } -ArgumentList $logFileName
 
+
+
         while (-not $proc.HasExited -and $ljob.HasMoreData)
-        {
-            Receive-Job $ljob
-            Start-Sleep -Milliseconds 200
+        {		
+			Receive-Job $ljob
+		    Start-Sleep -Milliseconds 200
         }
+		
+		
+		
         Receive-Job $ljob
         Stop-Job $ljob
         Remove-Job $ljob
@@ -169,7 +192,8 @@ foreach ($entry in $packages.GetEnumerator()) {
         $exitCode = $proc.ExitCode
         if (($proc.ExitCode -eq 0) -and (Test-Path $unityPackagePath)) {
             Write-Verbose "Successfully created $unityPackagePath"
-        }
+		
+		}
         else {
             # It's possible that $exitCode could have been set to a zero value
             # despite the package not being there - in that case this should still return

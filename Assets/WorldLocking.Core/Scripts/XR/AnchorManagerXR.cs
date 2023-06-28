@@ -222,7 +222,7 @@ namespace Microsoft.MixedReality.WorldLocking.Core
 
 #if WLT_XR_MANAGEMENT_PRESENT
             wmrPersistence = XRGeneralSettings.Instance.Manager.activeLoader.name.StartsWith("Windows MR");
-            openXRPersistence = XRGeneralSettings.Instance.Manager.activeLoader.name.StartsWith("Open XR");
+            openXRPersistence = XRGeneralSettings.Instance.Manager.activeLoader.name.StartsWith("OpenXR");
 #endif // WLT_XR_MANAGEMENT_PRESENT
             DebugLogSetup($"XRSDK Persistence: WMR={wmrPersistence} OpenXR={openXRPersistence}");
         }

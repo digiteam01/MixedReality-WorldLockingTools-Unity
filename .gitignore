@@ -54,3 +54,5 @@ Thumbs.db
 # ===================== #
 Assets/TextMesh Pro.meta
 Assets/TextMesh Pro/
+
+*.meta
