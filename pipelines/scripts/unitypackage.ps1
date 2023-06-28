@@ -30,6 +30,7 @@
     working directory.
 .PARAMETER UnityDirectory
     The Unity install directory that will be used to build packages.
+	C:\Program Files\Unity\Hub\Editor\20xx.x.xxf1\Editor
 .PARAMETER Clean
     If true, the OutputDirectory will be recursively deleted prior to package
     generation.
@@ -54,7 +55,7 @@ param(
     [string]$OutputDirectory = ".\artifacts",
     [string]$RepoDirectory ="..\..",
     [string]$LogDirectory,
-    [string]$UnityDirectory,
+    [string]$UnityDirectory = "C:\Program Files\Unity\Hub\Editor\2021.3.26f1\Editor",
     [switch]$Clean,
     [switch]$Verbose
 )

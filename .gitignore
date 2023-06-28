@@ -55,4 +55,6 @@ Thumbs.db
 Assets/TextMesh Pro.meta
 Assets/TextMesh Pro/
 
+/piplines/scripts/artifacts/
+*.log
 *.meta
