@@ -54,7 +54,7 @@ param(
     [string]$OutputDirectory = ".\artifacts",
     [string]$RepoDirectory ="..\..",
     [string]$LogDirectory,
-    [string]$UnityDirectory = "C:\Program Files\Unity\Hub\Editor\2021.3.26f1\Editor",
+    [string]$UnityDirectory,
     [switch]$Clean,
     [switch]$Verbose
 )

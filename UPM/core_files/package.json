@@ -32,10 +32,10 @@
     "url": "https://github.com/microsoft/MixedReality-WorldLockingTools-Unity/issues"
   },
   "files": [
-    "E:\\Repos\\MixedReality-WorldLockingTools-Unity\\Assets\\Documentation~*",
-    "..\\..\\Assets\\WorldLocking.Core*",
-    "..\\..\\Assets\\WorldLocking.Engine*",
-    "..\\..\\Assets\\WorldLocking.Tools*",
+    "Documentation~*",
+    "WorldLocking.Core*",
+    "WorldLocking.Engine*",
+    "WorldLocking.Tools*",
     "Packages\\Microsoft.MixedReality.Unity.FrozenWorld.Engine.1.1.1*",
     "Packages.meta",
     "package.json.meta",
